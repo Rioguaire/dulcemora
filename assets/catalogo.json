@@ -1,0 +1,234 @@
+[
+  {
+    "nombre": "Alfajores",
+    "imagenes": [
+      "1.jpeg",
+      "2.jpeg",
+      "3.jpeg"
+    ]
+  },
+  {
+    "nombre": "Bombones",
+    "imagenes": [
+      "1.jpeg"
+    ]
+  },
+  {
+    "nombre": "Brookies",
+    "imagenes": [
+      "1.jpeg",
+      "2.jpeg"
+    ]
+  },
+  {
+    "nombre": "Galletas",
+    "imagenes": [
+      "1.jpg",
+      "2.jpg",
+      "3.jpeg",
+      "4.jpeg",
+      "5.jpg"
+    ]
+  },
+  {
+    "nombre": "Marquesas",
+    "subcategorias": [
+      {
+        "nombre": "Limón",
+        "imagenes": []
+      },
+      {
+        "nombre": "Oreo",
+        "imagenes": []
+      },
+      {
+        "nombre": "Tradicional",
+        "imagenes": []
+      }
+    ]
+  },
+  {
+    "nombre": "Mini Cakes",
+    "subcategorias": [
+      {
+        "nombre": "Mini cake standard",
+        "imagenes": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png",
+          "5.png",
+          "6.png",
+          "7.png",
+          "8.png",
+          "9.png",
+          "10.png",
+          "11.png",
+          "12.png",
+          "13.jpg",
+          "14.jpg"
+        ]
+      },
+      {
+        "nombre": "Minicake individual",
+        "imagenes": [
+          "1.png",
+          "2.jpeg",
+          "3.jpeg",
+          "4.jpeg",
+          "5.jpeg",
+          "6.jpeg",
+          "7.jpeg",
+          "8.jpeg",
+          "9.jpeg",
+          "10.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "nombre": "Ponquesitos",
+    "imagenes": [
+      "1.jpeg",
+      "2.jpg",
+      "3.jpeg",
+      "4.jpeg",
+      "5.jpeg",
+      "6.jpeg",
+      "7.jpeg",
+      "8.jpeg",
+      "9.jpeg"
+    ]
+  },
+  {
+    "nombre": "Porciones de torta",
+    "imagenes": []
+  },
+  {
+    "nombre": "Quesillo",
+    "imagenes": [
+      "1.jpeg",
+      "2.jpeg"
+    ]
+  },
+  {
+    "nombre": "Tortas",
+    "subcategorias": [
+      {
+        "nombre": "Con Flores",
+        "imagenes": [
+          "1.png",
+          "2.png"
+        ]
+      },
+      {
+        "nombre": "Corazon",
+        "imagenes": [
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.png",
+          "5.png",
+          "6.png",
+          "7.jpg",
+          "8.jpeg",
+          "9.jpeg"
+        ]
+      },
+      {
+        "nombre": "Cuadrada",
+        "imagenes": [
+          "1.png",
+          "2.png",
+          "3.jpeg"
+        ]
+      },
+      {
+        "nombre": "De un piso",
+        "imagenes": [
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg",
+          "6.png",
+          "7.png",
+          "8.png",
+          "9.png",
+          "10.png",
+          "11.png",
+          "12.png",
+          "13.png",
+          "14.png",
+          "15.png",
+          "16.png",
+          "17.png",
+          "18.png",
+          "19.png",
+          "20.png",
+          "21.png",
+          "22.png",
+          "23.png",
+          "24.png",
+          "25.png",
+          "26.png",
+          "27.png",
+          "28.jpg",
+          "29.jpg",
+          "30.jpg",
+          "31.jpg",
+          "32.jpeg",
+          "33.jpeg",
+          "34.jpeg",
+          "35.jpeg",
+          "36.jpeg",
+          "37.jpeg",
+          "38.jpeg",
+          "39.jpeg",
+          "40.jpeg",
+          "41.jpeg",
+          "42.jpeg",
+          "43.jpeg",
+          "44.jpeg",
+          "45.jpeg",
+          "46.jpeg",
+          "47.jpeg",
+          "48.jpeg",
+          "49.jpeg",
+          "50.jpeg",
+          "51.jpg"
+        ]
+      },
+      {
+        "nombre": "Dos pisos",
+        "imagenes": [
+          "1.png",
+          "2.png",
+          "3.jpg"
+        ]
+      },
+      {
+        "nombre": "Fondant",
+        "imagenes": [
+          "1.png"
+        ]
+      },
+      {
+        "nombre": "Ganache Magico",
+        "imagenes": [
+          "1.png"
+        ]
+      },
+      {
+        "nombre": "Tres pisos",
+        "imagenes": [
+          "1.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "nombre": "Trufas",
+    "imagenes": []
+  }
+]
