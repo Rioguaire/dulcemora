@@ -81,6 +81,7 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
         priceHtml +
         bcvHtml +
         '</div>' +
+        '</div>' +
         '</div>';
 }
 
@@ -96,6 +97,7 @@ function renderProductGrid(imgs, secNombre, subNombre, precioUSD) {
 
 // === BUILD EXPANDED CONTENT (tabs + product grid) ===
 function buildExpandedHTML(sec) {
+    console.log('[buildExpandedHTML]', sec.nombre, 'subs:', (sec.subcategorias || []).length, 'hasSubs:', (sec.subcategorias || []).length > 0);
     const m = meta[sec.nombre] || {};
     const subs = sec.subcategorias || [];
     const hasSubs = subs.length > 0;
@@ -155,6 +157,7 @@ function renderCatalogo() {
     const cont = document.getElementById('catalogo-contenedor');
     if (!cont) return;
 
+    console.log('[renderCatalogo] secciones:', secciones.map(s => s.nombre + (s.subcategorias ? ' (subs:' + s.subcategorias.length + ')' : '')));
     cont.innerHTML = '<div class="cat-grid" id="cat-grid">' +
         secciones.map(function (sec, i) {
             var subs = sec.subcategorias || [];
@@ -224,24 +227,28 @@ function enterSidebarMode($grid, activeIdx) {
         if (sec) {
             var html = buildExpandedHTML(sec);
             $content.html(html.head + html.body);
-            bindContentEvents($content, $grid);
+            bindTabEvents($content, $grid);
             $content.addClass('visible');
             scrollToContent($grid);
         }
     });
 }
 
-function bindContentEvents($content, $grid) {
-    $content.find('.tab-item').on('click', function () {
-        var idxT = $(this).index();
+function bindTabEvents($content, $grid) {
+    console.log('[bindTabEvents] tabs found:', $content.find('.tab-item').length, 'close:', $content.find('.cat-exp-close').length);
+    $content.find('.tab-item').off('click').on('click', function () {
+        var idx = $(this).index();
+        console.log('[TAB CLICK] tab:', $(this).text(), 'idx:', idx);
         var $parent = $(this).closest('.cat-main-content');
+        console.log('[TAB CLICK] panels count:', $parent.find('.tab-panel').length);
         $parent.find('.tab-item').removeClass('activo');
         $(this).addClass('activo');
         $parent.find('.tab-panel').removeClass('activo');
-        $parent.find('.tab-panel').eq(idxT).addClass('activo');
+        $parent.find('.tab-panel').eq(idx).addClass('activo');
+        console.log('[TAB CLICK] panel now has activo:', $parent.find('.tab-panel').eq(idx).hasClass('activo'));
     });
 
-    $content.find('#catExpClose').on('click', function () {
+    $content.find('.cat-exp-close').off('click').on('click', function () {
         resetToGrid($grid);
     });
 }
@@ -254,7 +261,7 @@ function switchCategoryContent(idx, $grid) {
     setTimeout(function () {
         var html = buildExpandedHTML(sec);
         $content.html(html.head + html.body);
-        bindContentEvents($content, $grid);
+        bindTabEvents($content, $grid);
         $content.addClass('visible');
         scrollToContent($grid);
     }, 200);
@@ -329,13 +336,17 @@ function navLightbox(dir) {
 }
 
 document.addEventListener('click', e => {
-    const img = e.target.closest('.img-wrap img');
-    if (img) {
-        const grid = img.closest('.product-grid');
+    const wrap = e.target.closest('.img-wrap');
+    if (wrap) {
+        console.log('[CLICK] img-wrap found');
+        const grid = wrap.closest('.product-grid');
         if (grid) {
             const allImgs = [...grid.querySelectorAll('img')].map(i => i.src);
-            const idx = allImgs.indexOf(img.src);
-            if (idx >= 0) { openLightbox(allImgs, idx); return; }
+            const imgEl = wrap.querySelector('img');
+            if (imgEl) {
+                const idx = allImgs.indexOf(imgEl.src);
+                if (idx >= 0) { openLightbox(allImgs, idx); return; }
+            }
         }
     }
     const lb = document.getElementById('lightbox');
@@ -377,6 +388,7 @@ Promise.all([
     meta = metadata;
     renderCatalogo();
 }).catch(err => {
+    console.error('[INIT] Error:', err);
     document.getElementById('catalogo-contenedor').innerHTML =
         '<p style="text-align:center;padding:2rem;color:var(--text2)">Error al cargar el catálogo</p>';
 });
