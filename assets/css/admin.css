@@ -1328,6 +1328,119 @@ tr.ped-fila-entregado:hover td {
 }
 
 /* ===== CATALOG LIGHTBOX (ADMIN) ===== */
+/* ===== CATALOG MOVER MODAL ===== */
+.cat-mover-modal {
+    position: fixed; inset: 0; z-index: 1100;
+    display: flex; align-items: center; justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+.cat-mover-bg {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.6); cursor: pointer;
+}
+.cat-mover-content {
+    position: relative; background: var(--surface); border-radius: 10px;
+    width: 380px; max-width: 90vw; box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.cat-mover-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.2rem; border-bottom: 1px solid var(--border);
+    font-size: 0.88rem; font-weight: 600;
+}
+.cat-mover-close {
+    background: none; border: none; font-size: 1.3rem; cursor: pointer;
+    color: var(--text2); padding: 0; line-height: 1;
+}
+.cat-mover-close:hover { color: var(--text); }
+.cat-mover-body { padding: 1.2rem; }
+.cat-mover-select {
+    width: 100%; padding: 0.5rem 0.6rem; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); font-size: 0.85rem;
+}
+.cat-mover-footer {
+    display: flex; gap: 0.5rem; justify-content: flex-end;
+    padding: 0.8rem 1.2rem; border-top: 1px solid var(--border);
+}
+.cat-mover-btn {
+    position: absolute; top: 50%; right: 4px; transform: translateY(-50%);
+    background: rgba(0,0,0,0.45); color: #fff; border: none;
+    border-radius: 4px; padding: 2px 5px; font-size: 0.7rem;
+    cursor: pointer; opacity: 0; transition: opacity 0.2s; z-index: 2;
+    line-height: 1.2;
+}
+.cat-section-thumb:hover .cat-mover-btn { opacity: 1; }
+
+/* ===== CATEGORY MANAGER MODAL ===== */
+.cat-mgr-modal {
+    position: fixed; inset: 0; z-index: 1200;
+    display: flex; align-items: center; justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+.cat-mgr-bg {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.6); cursor: pointer;
+}
+.cat-mgr-content {
+    position: relative; background: var(--surface); border-radius: 10px;
+    width: 520px; max-width: 92vw; max-height: 85vh; display: flex;
+    flex-direction: column; box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.cat-mgr-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.2rem; border-bottom: 1px solid var(--border);
+    font-size: 0.9rem; font-weight: 600; flex-shrink: 0;
+}
+.cat-mgr-close {
+    background: none; border: none; font-size: 1.3rem; cursor: pointer;
+    color: var(--text2); padding: 0; line-height: 1;
+}
+.cat-mgr-close:hover { color: var(--text); }
+.cat-mgr-body {
+    padding: 1rem 1.2rem; overflow-y: auto; flex: 1;
+}
+.cat-mgr-footer {
+    display: flex; gap: 0.5rem; justify-content: flex-end;
+    padding: 0.8rem 1.2rem; border-top: 1px solid var(--border); flex-shrink: 0;
+}
+.cat-mgr-item {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.7rem 0.8rem; margin-bottom: 0.7rem;
+}
+.cat-mgr-item-header {
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.cat-mgr-item-header input {
+    flex: 1; padding: 0.35rem 0.5rem; border-radius: 5px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); font-size: 0.85rem;
+}
+.cat-mgr-btn {
+    background: none; border: 1px solid var(--border); border-radius: 5px;
+    padding: 0.3rem 0.5rem; cursor: pointer; font-size: 0.75rem;
+    color: var(--text2); white-space: nowrap; transition: 0.15s;
+}
+.cat-mgr-btn:hover { border-color: var(--accent); color: var(--accent); }
+.cat-mgr-btn-del:hover { border-color: #dc3545; color: #dc3545; }
+.cat-mgr-btn-add {
+    background: none; border: 1px dashed var(--border); border-radius: 5px;
+    padding: 0.35rem 0.7rem; cursor: pointer; font-size: 0.75rem;
+    color: var(--text3); margin-top: 0.4rem; transition: 0.15s; width: 100%;
+}
+.cat-mgr-btn-add:hover { border-color: var(--accent); color: var(--accent); }
+.cat-mgr-subs {
+    margin-top: 0.5rem; padding-left: 1.2rem;
+}
+.cat-mgr-sub-item {
+    display: flex; align-items: center; gap: 0.5rem; margin-top: 0.35rem;
+}
+.cat-mgr-sub-item input {
+    flex: 1; padding: 0.3rem 0.5rem; border-radius: 5px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); font-size: 0.82rem;
+}
+
+/* ===== LIGHTBOX ===== */
 .cat-lightbox {
     position: fixed;
     inset: 0;
