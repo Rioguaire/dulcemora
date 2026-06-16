@@ -3,7 +3,6 @@
     "nombre": "Alfajores",
     "imagenes": [
       "1.webp",
-      "2.webp",
       "3.webp"
     ]
   },
@@ -45,7 +44,8 @@
         "nombre": "Tradicional",
         "imagenes": []
       }
-    ]
+    ],
+    "imagenes": []
   },
   {
     "nombre": "Mini Cakes",
@@ -84,7 +84,8 @@
           "9.webp"
         ]
       }
-    ]
+    ],
+    "imagenes": []
   },
   {
     "nombre": "Ponquesitos",
@@ -114,35 +115,6 @@
   {
     "nombre": "Tortas",
     "subcategorias": [
-      {
-        "nombre": "Con Flores",
-        "imagenes": [
-          "1.webp",
-          "2.webp"
-        ]
-      },
-      {
-        "nombre": "Corazon",
-        "imagenes": [
-          "1.webp",
-          "2.webp",
-          "3.webp",
-          "4.webp",
-          "5.webp",
-          "6.webp",
-          "7.webp",
-          "8.webp",
-          "9.webp"
-        ]
-      },
-      {
-        "nombre": "Cuadrada",
-        "imagenes": [
-          "1.webp",
-          "2.webp",
-          "3.webp"
-        ]
-      },
       {
         "nombre": "De un piso",
         "imagenes": [
@@ -208,6 +180,41 @@
         ]
       },
       {
+        "nombre": "Tres pisos",
+        "imagenes": [
+          "1.webp"
+        ]
+      },
+      {
+        "nombre": "Con Flores",
+        "imagenes": [
+          "1.webp",
+          "2.webp"
+        ]
+      },
+      {
+        "nombre": "Corazon",
+        "imagenes": [
+          "1.webp",
+          "2.webp",
+          "3.webp",
+          "4.webp",
+          "5.webp",
+          "6.webp",
+          "7.webp",
+          "8.webp",
+          "9.webp"
+        ]
+      },
+      {
+        "nombre": "Cuadrada",
+        "imagenes": [
+          "1.webp",
+          "2.webp",
+          "3.webp"
+        ]
+      },
+      {
         "nombre": "Fondant",
         "imagenes": [
           "1.webp"
@@ -218,17 +225,18 @@
         "imagenes": [
           "1.webp"
         ]
-      },
-      {
-        "nombre": "Tres pisos",
-        "imagenes": [
-          "1.webp"
-        ]
       }
-    ]
+    ],
+    "imagenes": []
   },
   {
     "nombre": "Trufas",
     "imagenes": []
+  },
+  {
+    "nombre": "Macarons",
+    "imagenes": [
+      "2.webp"
+    ]
   }
 ]

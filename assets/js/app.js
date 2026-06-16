@@ -32,6 +32,11 @@ const CAT_SVG = {
 };
 
 function catIconHtml(name) {
+    var cover = meta[name] && meta[name].cover;
+    if (cover) {
+        var src = 'assets/images/Catal/' + encodeURIComponent(name) + '/' + encodeURIComponent(cover);
+        return '<img class="cat-icon-img" src="' + src + '" alt="" loading="lazy">';
+    }
     var url = CAT_IMG_URLS[name];
     if (url) return '<img class="cat-icon-img" src="' + url + '" alt="" loading="lazy">';
     return CAT_SVG[name] || CAT_SVG['Tortas'];
