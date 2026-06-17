@@ -636,6 +636,27 @@ body {
     margin-top: 0.15rem;
 }
 
+.product-card .product-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0.75rem 0.75rem;
+    padding: 0.45rem 0.9rem;
+    background: transparent;
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    transition: all 0.25s;
+}
+.product-card .product-wa:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
 @media (max-width: 768px) {
     .catalogo-wrap { padding: 2rem 0.75rem 2.5rem; }
     .tabs-menu { padding: 8px 10px 0; gap: 3px; }
