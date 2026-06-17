@@ -113,7 +113,7 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
         ? '<span class="product-bcv">Bs. ' + (precioUSD * bcvRate).toFixed(2) + '</span>'
         : '<span class="product-bcv"></span>';
     var delay = Math.min(idx * 0.045, 0.4);
-    var waMsg = 'Hola, quisiera cotizar: ' + name + ' - ' + (subNombre || secNombre) + ' (Dulce Mora) - Catálogo: ' + location.href.replace(/\?.*/, '').replace(/#.*/, '');
+    var waMsg = 'Hola, quisiera cotizar este producto: ' + new URL(src, location.href).href;
     return '<div class="product-card" style="animation-delay:' + delay + 's">' +
         '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" oncontextmenu="return false"></div>' +
         '<div class="product-info">' +
@@ -381,9 +381,7 @@ function navLightbox(dir) {
 
 function cotizarWhatsApp() {
     var url = lightboxImgs[lightboxIdx];
-    var parts = url.replace(/^.*\/Catal\//, '').replace(/\.\w+$/, '').split('/');
-    var desc = parts.length > 1 ? parts.slice(0, -1).join(' - ') : parts[0];
-    var msg = 'Hola, quisiera cotizar un producto de Dulce Mora (' + desc + '). Catálogo: ' + location.href.replace(/\?.*/, '').replace(/#.*/, '');
+    var msg = 'Hola, quisiera cotizar este producto: ' + (url.indexOf('://') > 0 ? url : new URL(url, location.href).href);
     window.open('https://wa.me/584142052925?text=' + encodeURIComponent(msg), '_blank');
 }
 
