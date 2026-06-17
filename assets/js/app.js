@@ -380,7 +380,8 @@ function navLightbox(dir) {
 }
 
 function cotizarWhatsApp() {
-    const msg = 'Hola, quisiera cotizar este producto: ' + lightboxImgs[lightboxIdx];
+    const url = lightboxImgs[lightboxIdx];
+    const msg = 'Hola, quisiera cotizar este producto del catálogo Dulce Mora: ' + (url.indexOf('://') > 0 ? url : new URL(url, location.href).href);
     window.open('https://wa.me/584142052925?text=' + encodeURIComponent(msg), '_blank');
 }
 
@@ -390,10 +391,12 @@ document.addEventListener('click', e => {
         console.log('[CLICK] img-wrap found');
         const grid = wrap.closest('.product-grid');
         if (grid) {
-            const allImgs = [...grid.querySelectorAll('img')].map(i => i.getAttribute('data-real-src') || i.src);
-            const imgEl = wrap.querySelector('img');
+            var imgEl = wrap.querySelector('img');
             if (imgEl) {
-                const idx = allImgs.indexOf(imgEl.src);
+                var realSrc = imgEl.getAttribute('data-real-src');
+                if (!realSrc) return;
+                var allImgs = [...grid.querySelectorAll('img')].map(function (i) { return i.getAttribute('data-real-src') || i.src; });
+                var idx = allImgs.indexOf(realSrc);
                 if (idx >= 0) { openLightbox(allImgs, idx); return; }
             }
         }
