@@ -79,7 +79,7 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
         ? '<span class="product-bcv">Bs. ' + (precioUSD * bcvRate).toFixed(2) + '</span>'
         : '<span class="product-bcv"></span>';
     var delay = Math.min(idx * 0.045, 0.4);
-    var waMsg = 'Hola, quisiera cotizar este producto: ' + location.origin + '/' + src.replace(/^.*\/\/[^\/]+/, '');
+    var waMsg = 'Hola, quisiera cotizar este producto: ' + new URL(src, location.href).href;
     return '<div class="product-card" style="animation-delay:' + delay + 's">' +
         '<div class="img-wrap"><div class="img-overlay"></div><img src="' + src + '" loading="lazy" onerror="this.style.display=\'none\'" oncontextmenu="return false"></div>' +
         '<div class="product-info">' +
@@ -344,8 +344,7 @@ function navLightbox(dir) {
 }
 
 function cotizarWhatsApp() {
-    const imgSrc = lightboxImgs[lightboxIdx];
-    const msg = 'Hola, quisiera cotizar este producto: ' + location.origin + '/' + imgSrc.replace(/^.*\/\/[^\/]+/, '');
+    const msg = 'Hola, quisiera cotizar este producto: ' + lightboxImgs[lightboxIdx];
     window.open('https://wa.me/584142052925?text=' + encodeURIComponent(msg), '_blank');
 }
 
