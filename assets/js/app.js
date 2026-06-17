@@ -400,6 +400,14 @@ Promise.all([
     const metadata = { ...fileMeta, ...localMeta };
 
     secciones = data;
+    // limpiar hidden obsoletos
+    secciones.forEach(s => {
+        if (metadata[s.nombre]) delete metadata[s.nombre].hidden;
+        (s.subcategorias||[]).forEach(sub => {
+            const sm = metadata[s.nombre]?.subs?.[sub.nombre];
+            if (sm) delete sm.hidden;
+        });
+    });
     meta = metadata;
     renderCatalogo();
 }).catch(err => {

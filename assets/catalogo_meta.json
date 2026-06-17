@@ -1,0 +1,73 @@
+{
+  "Tortas": {
+    "descripcion": "El centro de atención de tus celebraciones. Diseños impecables y sabores inolvidables creados para compartir los mejores momentos",
+    "precio": 0,
+    "subs": {
+      "Corazon": {},
+      "Con Ponquesitos": {},
+      "Tres pisos": {
+        "hidden": [
+          "1.webp"
+        ]
+      },
+      "Dos pisos": {
+        "hidden": [
+          "3.webp"
+        ]
+      },
+      "De un piso": {
+        "hidden": [
+          "5.webp"
+        ]
+      }
+    }
+  },
+  "Galletas": {
+    "descripcion": "Amor a primer mordisco. Nuestras galletas gourmet están horneadas con pasión, logrando esa textura ideal que se deshace en la boca. El mimo y la calidad de Dulce Mora listos para disfrutar.",
+    "precio": 0,
+    "cover": "3.webp"
+  },
+  "Mini Cakes": {
+    "descripcion": "Toda la magia, el detalle y el sabor de nuestras grandes tortas en un formato individual perfecto para consentirte",
+    "precio": 0
+  },
+  "Brookies": {
+    "descripcion": "La combinación definitiva: la densidad chocolatosa de un brownie fusionada con la textura clásica de una galleta con chispas.",
+    "precio": 0,
+    "cover": "2.webp"
+  },
+  "Alfajores": {
+    "descripcion": "Delicados discos que se deshacen en la boca, con un generoso relleno que te hará volver por más",
+    "precio": 0
+  },
+  "Macarons": {
+    "cover": "2.webp",
+    "descripcion": "Sofisticados bocados franceses a base de almendras. El equilibrio perfecto entre una textura crujiente y un corazón irresistiblemente cremoso",
+    "precio": 0
+  },
+  "Bombones": {
+    "cover": "1.webp",
+    "descripcion": "Pequeñas obras de arte hechas a mano. Capas de chocolate crujiente que resguardan rellenos artesanales sorprendentes",
+    "precio": 0
+  },
+  "Trufas": {
+    "descripcion": "La expresión más pura y elegante del chocolate. Bocados intensos, cremosos y sofisticados que se derriten en el paladar",
+    "precio": 0
+  },
+  "Marquesas": {
+    "descripcion": "Capas de tradición y cremosidad fría. El postre clásico de siempre, llevado a su versión más gourmet",
+    "precio": 0
+  },
+  "Ponquesitos": {
+    "descripcion": "Esponjosos, ligeros y decorados con dedicación. El detalle ideal para regalar o acompañar tus tardes",
+    "precio": 0
+  },
+  "Porciones de torta": {
+    "descripcion": "Tu rincón de felicidad del día. La excusa perfecta para disfrutar de tu sabor favorito en cualquier momento",
+    "precio": 0
+  },
+  "Quesillo": {
+    "descripcion": "Nuestra joya tradicional. Tan cremoso que se derrite en la boca, con el punto exacto de caramelo dorado.",
+    "precio": 0
+  }
+}
