@@ -105,7 +105,6 @@ function loadGridBlobs(container) {
 
 function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
     const src = getCatSrc(secNombre, subNombre, img);
-    const name = 'Producto ' + (idx + 1);
     const priceHtml = precioUSD
         ? '<span class="product-price" data-usd="' + precioUSD + '">$' + parseFloat(precioUSD).toFixed(2) + '</span>'
         : '<span class="product-price" data-usd=""></span>';
@@ -113,11 +112,10 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
         ? '<span class="product-bcv">Bs. ' + (precioUSD * bcvRate).toFixed(2) + '</span>'
         : '<span class="product-bcv"></span>';
     var delay = Math.min(idx * 0.045, 0.4);
-    var waMsg = 'Hola, quisiera cotizar este producto: ' + new URL(src, location.href).href;
+    var waMsg = 'Hola, me interesa este producto: ' + new URL(src, location.href).href;
     return '<div class="product-card" style="animation-delay:' + delay + 's">' +
         '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" oncontextmenu="return false"></div>' +
         '<div class="product-info">' +
-        '<span class="product-name">' + name + '</span>' +
         priceHtml +
         bcvHtml +
         '</div>' +
