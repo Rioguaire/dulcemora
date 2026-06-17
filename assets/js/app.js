@@ -69,6 +69,40 @@ function fetchBCV() {
 }
 
 // === PRODUCT CARD ===
+var _blobCache = {};
+
+function loadBlobImg(imgEl, realSrc) {
+    if (_blobCache[realSrc]) {
+        imgEl.src = _blobCache[realSrc];
+        return;
+    }
+    fetch(realSrc)
+        .then(function (r) { return r.blob(); })
+        .then(function (blob) {
+            var url = URL.createObjectURL(blob);
+            _blobCache[realSrc] = url;
+            imgEl.src = url;
+        })
+        .catch(function () { imgEl.style.display = 'none'; });
+}
+
+function loadGridBlobs(container) {
+    var imgs = container.querySelectorAll('.img-wrap img[data-src]');
+    var i = 0;
+    function next() {
+        if (i >= imgs.length) return;
+        var el = imgs[i++];
+        loadBlobImg(el, el.getAttribute('data-src'));
+    }
+    // stagger loading
+    for (var j = 0; j < 4 && j < imgs.length; j++) next();
+    // load rest as 1x1 completes
+    var check = setInterval(function () {
+        if (i >= imgs.length) { clearInterval(check); return; }
+        next();
+    }, 120);
+}
+
 function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
     const src = getCatSrc(secNombre, subNombre, img);
     const name = 'Producto ' + (idx + 1);
@@ -79,9 +113,9 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
         ? '<span class="product-bcv">Bs. ' + (precioUSD * bcvRate).toFixed(2) + '</span>'
         : '<span class="product-bcv"></span>';
     var delay = Math.min(idx * 0.045, 0.4);
-    var waMsg = 'Hola, quisiera cotizar este producto: ' + new URL(src, location.href).href;
+    var waMsg = 'Hola, quisiera cotizar este producto del catálogo Dulce Mora: ' + location.href.replace(/\?.*/, '').replace(/#.*/, '');
     return '<div class="product-card" style="animation-delay:' + delay + 's">' +
-        '<div class="img-wrap"><div class="img-overlay"></div><img src="' + src + '" loading="lazy" onerror="this.style.display=\'none\'" oncontextmenu="return false"></div>' +
+        '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" oncontextmenu="return false"></div>' +
         '<div class="product-info">' +
         '<span class="product-name">' + name + '</span>' +
         priceHtml +
@@ -236,6 +270,7 @@ function enterSidebarMode($grid, activeIdx) {
             var html = buildExpandedHTML(sec);
             $content.html(html.head + html.body);
             bindTabEvents($content, $grid);
+            loadGridBlobs($content[0]);
             $content.addClass('visible');
             scrollToContent($grid);
         }
@@ -270,6 +305,7 @@ function switchCategoryContent(idx, $grid) {
         var html = buildExpandedHTML(sec);
         $content.html(html.head + html.body);
         bindTabEvents($content, $grid);
+        loadGridBlobs($content[0]);
         $content.addClass('visible');
         scrollToContent($grid);
     }, 200);
@@ -354,7 +390,7 @@ document.addEventListener('click', e => {
         console.log('[CLICK] img-wrap found');
         const grid = wrap.closest('.product-grid');
         if (grid) {
-            const allImgs = [...grid.querySelectorAll('img')].map(i => i.src);
+            const allImgs = [...grid.querySelectorAll('img')].map(i => i.getAttribute('data-real-src') || i.src);
             const imgEl = wrap.querySelector('img');
             if (imgEl) {
                 const idx = allImgs.indexOf(imgEl.src);
