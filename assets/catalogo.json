@@ -3,17 +3,12 @@
     "nombre": "Alfajores",
     "imagenes": [
       "1.webp",
+      "2.webp",
       "3.webp",
       "4.webp",
       "5.webp",
       "6.webp",
-      "7.webp",
-      "8.webp",
-      "9.webp",
-      "10.webp",
-      "11.webp",
-      "12.webp",
-      "13.webp"
+      "7.webp"
     ]
   },
   {
@@ -31,8 +26,7 @@
       "4.webp",
       "5.webp",
       "6.webp",
-      "7.webp",
-      "8.webp"
+      "7.webp"
     ]
   },
   {
@@ -118,7 +112,8 @@
           "42.webp",
           "43.webp",
           "44.webp",
-          "45.webp"
+          "45.webp",
+          "46.webp"
         ]
       },
       {
@@ -155,8 +150,7 @@
           "29.webp",
           "30.webp",
           "31.webp",
-          "32.webp",
-          "33.webp"
+          "32.webp"
         ]
       },
       {
@@ -166,15 +160,13 @@
           "2.webp",
           "3.webp",
           "4.webp",
+          "5.webp",
+          "6.webp",
           "7.webp",
           "8.webp",
           "9.webp",
           "10.webp",
-          "11.webp",
-          "12.webp",
-          "13.webp",
-          "14.webp",
-          "15.webp"
+          "11.webp"
         ]
       }
     ],
@@ -183,17 +175,17 @@
   {
     "nombre": "Ponquesitos",
     "imagenes": [
+      "1.webp",
+      "2.webp",
+      "3.webp",
+      "4.webp",
       "5.webp",
       "6.webp",
       "7.webp",
       "8.webp",
       "9.webp",
       "10.webp",
-      "11.webp",
-      "12.webp",
-      "13.webp",
-      "14.webp",
-      "15.webp"
+      "11.webp"
     ]
   },
   {
@@ -207,7 +199,8 @@
       "6.webp",
       "7.webp",
       "8.webp",
-      "9.webp"
+      "9.webp",
+      "upload_1781742081.webp"
     ]
   },
   {
@@ -339,8 +332,7 @@
           "114.webp",
           "115.webp",
           "116.webp",
-          "117.webp",
-          "118.webp"
+          "117.webp"
         ]
       },
       {
@@ -348,23 +340,22 @@
         "imagenes": [
           "1.webp",
           "2.webp",
-          "3.webp",
-          "4.webp"
+          "3.webp"
         ]
       },
       {
         "nombre": "Tres pisos",
         "imagenes": [
           "1.webp",
-          "2.webp",
-          "3.webp"
+          "2.webp"
         ]
       },
       {
         "nombre": "Con Flores",
         "imagenes": [
           "1.webp",
-          "2.webp"
+          "2.webp",
+          "upload_1781741976.webp"
         ]
       },
       {
@@ -405,11 +396,11 @@
       {
         "nombre": "Con Ponquesitos",
         "imagenes": [
-          "6.webp",
-          "8.webp",
-          "9.webp",
-          "10.webp",
-          "11.webp"
+          "1.webp",
+          "2.webp",
+          "3.webp",
+          "4.webp",
+          "5.webp"
         ]
       }
     ],
@@ -424,7 +415,7 @@
   {
     "nombre": "Macarons",
     "imagenes": [
-      "2.webp"
+      "1.webp"
     ]
   }
 ]
