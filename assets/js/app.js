@@ -126,12 +126,9 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
 }
 
 function renderProductGrid(imgs, secNombre, subNombre, precioUSD) {
-    const uploads = JSON.parse(localStorage.getItem('dm_catalogo_uploads') || '{}');
-    const uk = getCatKey(secNombre, subNombre);
-    const allImgs = [...imgs, ...(uploads[uk] || [])];
-    if (!allImgs.length) return '<p style="padding:1rem;color:var(--text2);font-size:0.8rem">Próximamente</p>';
+    if (!imgs.length) return '<p style="padding:1rem;color:var(--text2);font-size:0.8rem">Próximamente</p>';
     return '<div class="product-grid">' +
-        allImgs.map((img, i) => buildProductCard(img, secNombre, subNombre, precioUSD, i)).join('') +
+        imgs.map((img, i) => buildProductCard(img, secNombre, subNombre, precioUSD, i)).join('') +
         '</div>';
 }
 
