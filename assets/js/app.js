@@ -1,3 +1,5 @@
+const R2_BASE = 'https://pub-5984752a3add48f9bc4bcd3a4feac8d5.r2.dev/Catal';
+
 let secciones = [];
 let meta = {};
 let bcvRate = null;
@@ -34,7 +36,7 @@ const CAT_SVG = {
 function catIconHtml(name) {
     var cover = meta[name] && meta[name].cover;
     if (cover) {
-        var src = 'assets/images/Catal/' + encodeURIComponent(name) + '/' + encodeURIComponent(cover);
+        var src = R2_BASE + '/' + name.split('/').map(encodeURIComponent).join('/') + '/' + encodeURIComponent(cover);
         return '<img class="cat-icon-img" src="' + src + '" alt="" loading="lazy">';
     }
     var url = CAT_IMG_URLS[name];
@@ -45,11 +47,8 @@ function catIconHtml(name) {
 function getCatKey(nombre, sub) { return sub ? nombre + '||' + sub : nombre; }
 
 function getCatSrc(secNombre, subNombre, img) {
-    const imgData = JSON.parse(localStorage.getItem('dm_cat_img_data') || '{}');
-    const key = getCatKey(secNombre, subNombre);
-    if (imgData[key]?.[img]) return imgData[key][img];
     const path = subNombre ? secNombre + '/' + subNombre : secNombre;
-    return 'assets/images/Catal/' + path + '/' + encodeURIComponent(img);
+    return R2_BASE + '/' + path + '/' + encodeURIComponent(img);
 }
 
 // === BCV ===
