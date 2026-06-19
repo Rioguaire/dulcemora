@@ -74,19 +74,10 @@ function loadBlobImg(imgEl, realSrc) {
 
 function loadGridBlobs(container) {
     var imgs = container.querySelectorAll('.img-wrap img[data-src]');
-    var i = 0;
-    function next() {
-        if (i >= imgs.length) return;
-        var el = imgs[i++];
-        loadBlobImg(el, el.getAttribute('data-src'));
+    for (var j = 0; j < imgs.length; j++) {
+        var el = imgs[j];
+        el.src = el.getAttribute('data-src');
     }
-    // stagger loading
-    for (var j = 0; j < 4 && j < imgs.length; j++) next();
-    // load rest as 1x1 completes
-    var check = setInterval(function () {
-        if (i >= imgs.length) { clearInterval(check); return; }
-        next();
-    }, 120);
 }
 
 function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
@@ -100,7 +91,7 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
     var delay = Math.min(idx * 0.045, 0.4);
     var waMsg = 'Hola, me interesa este producto: ' + new URL(src, location.href).href;
     return '<div class="product-card" style="animation-delay:' + delay + 's">' +
-        '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" onerror="this.style.display=\'none\'" oncontextmenu="return false"></div>' +
+        '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.style.display=\'none\'" oncontextmenu="return false"></div>' +
         '<div class="product-info">' +
         priceHtml +
         bcvHtml +
