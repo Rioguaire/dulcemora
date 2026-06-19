@@ -1,4 +1,4 @@
-const R2_BASE = 'https://dulcemora-imgs.maplestory1912.workers.dev/Catal';
+const R2_BASE = 'https://dulcemora.pages.dev/img/Catal';
 
 let secciones = [];
 let meta = {};
