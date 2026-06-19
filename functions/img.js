@@ -10,7 +10,7 @@ const MIME = {
 
 export async function onRequest(context) {
   const url = new URL(context.request.url)
-  const path = url.pathname.replace('/img', '/Catal')
+  const path = url.pathname.replace('/img', '')
   const ext = path.substring(path.lastIndexOf('.'))
   const contentType = MIME[ext] || 'image/webp'
   const r2Url = R2_ORIGIN + path
