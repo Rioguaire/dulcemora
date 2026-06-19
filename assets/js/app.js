@@ -68,21 +68,8 @@ function fetchBCV() {
 }
 
 // === PRODUCT CARD ===
-var _blobCache = {};
-
 function loadBlobImg(imgEl, realSrc) {
-    if (_blobCache[realSrc]) {
-        imgEl.src = _blobCache[realSrc];
-        return;
-    }
-    fetch(realSrc)
-        .then(function (r) { return r.blob(); })
-        .then(function (blob) {
-            var url = URL.createObjectURL(blob);
-            _blobCache[realSrc] = url;
-            imgEl.src = url;
-        })
-        .catch(function () { imgEl.style.display = 'none'; });
+    imgEl.src = realSrc;
 }
 
 function loadGridBlobs(container) {
@@ -113,7 +100,7 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
     var delay = Math.min(idx * 0.045, 0.4);
     var waMsg = 'Hola, me interesa este producto: ' + new URL(src, location.href).href;
     return '<div class="product-card" style="animation-delay:' + delay + 's">' +
-        '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" oncontextmenu="return false"></div>' +
+        '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" loading="lazy" onerror="this.style.display=\'none\'" oncontextmenu="return false"></div>' +
         '<div class="product-info">' +
         priceHtml +
         bcvHtml +
