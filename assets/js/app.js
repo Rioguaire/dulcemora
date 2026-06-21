@@ -47,8 +47,8 @@ function catIconHtml(name) {
 function getCatKey(nombre, sub) { return sub ? nombre + '||' + sub : nombre; }
 
 function getCatSrc(secNombre, subNombre, img) {
-    const path = subNombre ? secNombre + '/' + subNombre : secNombre;
-    return R2_BASE + '/' + path + '/' + encodeURIComponent(img);
+    const path = encodeURIComponent(secNombre) + '/' + (subNombre ? encodeURIComponent(subNombre) + '/' : '');
+    return R2_BASE + '/' + path + encodeURIComponent(img);
 }
 
 // === BCV ===
@@ -91,7 +91,7 @@ function buildProductCard(img, secNombre, subNombre, precioUSD, idx) {
     var delay = Math.min(idx * 0.045, 0.4);
     var waMsg = 'Hola, me interesa este producto: ' + new URL(src, location.href).href;
     return '<div class="product-card" style="animation-delay:' + delay + 's">' +
-        '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.style.display=\'none\'" oncontextmenu="return false"></div>' +
+        '<div class="img-wrap"><div class="img-overlay"></div><img data-src="' + src + '" data-real-src="' + src + '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;var mp=this.src.split(\'/img/Catal/\')[1];if(mp)this.src=\'assets/images/Catal/\'+mp" oncontextmenu="return false"></div>' +
         '<div class="product-info">' +
         priceHtml +
         bcvHtml +
@@ -167,12 +167,25 @@ function buildExpandedHTML(sec) {
 }
 
 // === RENDER CATEGORY GRID ===
+function filterCatalogo(q) {
+    var grid = document.getElementById('cat-grid');
+    if (!grid) return;
+    var cards = grid.querySelectorAll('.cat-grid-card');
+    var lowered = q.toLowerCase().trim();
+    cards.forEach(function(card) {
+        var name = (card.querySelector('.cat-grid-name')?.textContent || '').toLowerCase();
+        card.style.display = (!lowered || name.includes(lowered)) ? '' : 'none';
+    });
+}
+
 function renderCatalogo() {
     const cont = document.getElementById('catalogo-contenedor');
     if (!cont) return;
 
     console.log('[renderCatalogo] secciones:', secciones.map(s => s.nombre + (s.subcategorias ? ' (subs:' + s.subcategorias.length + ')' : '')));
-    cont.innerHTML = '<div class="cat-grid" id="cat-grid">' +
+    cont.innerHTML =
+        '<div class="cat-search-wrap"><input class="cat-search" id="catSearch" type="text" placeholder="Buscar categoría..." autocomplete="off"></div>' +
+        '<div class="cat-grid" id="cat-grid">' +
         secciones.map(function (sec, i) {
             var subs = sec.subcategorias || [];
             var totalImgs = (sec.imagenes || []).length +
@@ -184,6 +197,25 @@ function renderCatalogo() {
                 '</div>';
         }).join('') +
         '</div>';
+
+    var searchInput = document.getElementById('catSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() { filterCatalogo(this.value); });
+        searchInput.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+    }
+
+    // Touch ripple on cards
+    document.getElementById('cat-grid')?.addEventListener('click', function(e) {
+        var card = e.target.closest('.cat-grid-card');
+        if (!card) return;
+        var rect = card.getBoundingClientRect();
+        var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+        var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+        card.style.setProperty('--rx', x + '%');
+        card.style.setProperty('--ry', y + '%');
+        card.classList.add('ripple-active');
+        setTimeout(function() { card.classList.remove('ripple-active'); }, 400);
+    });
 
     $('.cat-grid-card').on('click', function () {
         var $this = $(this);
@@ -235,7 +267,8 @@ function enterSidebarMode($grid, activeIdx) {
 
     $grid.addClass('sidebar-mode').append($sidebar).append($content);
 
-    $cards.slideUp(350, function () {
+    var slideDur = isMobile() ? 180 : 350;
+    $cards.slideUp(slideDur, function () {
         $sidebar.addClass('visible');
         var sec = secciones[activeIdx];
         if (sec) {
@@ -273,6 +306,7 @@ function switchCategoryContent(idx, $grid) {
     if (!sec) return;
     var $content = $grid.find('.cat-main-content');
     $content.removeClass('visible');
+    var delay = isMobile() ? 80 : 200;
     setTimeout(function () {
         var html = buildExpandedHTML(sec);
         $content.html(html.head + html.body);
@@ -280,14 +314,15 @@ function switchCategoryContent(idx, $grid) {
         loadGridBlobs($content[0]);
         $content.addClass('visible');
         scrollToContent($grid);
-    }, 200);
+    }, delay);
 }
 
 function scrollToContent($grid) {
+    var delay = isMobile() ? 100 : 250;
     setTimeout(function () {
         var top = $grid.find('.cat-main-content').offset().top - 80;
         window.scrollTo({ top: top, behavior: 'smooth' });
-    }, 250);
+    }, delay);
 }
 
 function resetToGrid($grid) {
@@ -297,12 +332,13 @@ function resetToGrid($grid) {
     $content.removeClass('visible');
     $sidebar.removeClass('visible');
 
+    var resetDelay = isMobile() ? 180 : 350;
     setTimeout(function () {
         $grid.removeClass('sidebar-mode');
         $sidebar.remove();
         $content.remove();
-        $grid.find('.cat-grid-card').removeClass('active').stop(true, true).slideDown(300);
-    }, 350);
+        $grid.find('.cat-grid-card').removeClass('active').stop(true, true).slideDown(isMobile() ? 150 : 300);
+    }, resetDelay);
 }
 
 // === SMOOTH SCROLL ===
@@ -387,6 +423,26 @@ document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') navLightbox(-1);
     if (e.key === 'ArrowRight') navLightbox(1);
 });
+
+// Swipe gestures for lightbox (mobile)
+(function(){
+    let sx = 0, sy = 0;
+    const lb = document.getElementById('lightbox');
+    lb.addEventListener('touchstart', function(e) {
+        const t = e.touches[0]; sx = t.clientX; sy = t.clientY;
+    }, { passive: true });
+    lb.addEventListener('touchend', function(e) {
+        if (!lb.classList.contains('active')) return;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+            if (dx > 0) navLightbox(-1); else navLightbox(1);
+        }
+    }, { passive: true });
+})();
+
+// === MOBILE FASTER SIDEBAR ===
+function isMobile() { return window.innerWidth < 768; }
 
 // === INIT ===
 const lbHTML = `
